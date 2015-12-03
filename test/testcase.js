@@ -20,6 +20,9 @@ var test = new Test("ExpGolomb", {
     }).add([
         // Generic test
         testExpGolomb_encode,
+        testExpGolomb_decode,
+        testExpGolomb_encodeSigned,
+        testExpGolomb_decodeSigned,
     ]);
 
 if (IN_BROWSER || IN_NW || IN_EL) {
@@ -150,6 +153,52 @@ function testExpGolomb_decode(test, pass, miss) {
        "131070": ExpGolomb.decode("000000000000000011111111111111111")   === 131070,
        "131071": ExpGolomb.decode("00000000000000000100000000000000000") === 131071,
        "131072": ExpGolomb.decode("00000000000000000100000000000000001") === 131072,
+    };
+    if ( /false/.test(JSON.stringify(result)) ) {
+        test.done(miss());
+    } else {
+        test.done(pass());
+    }
+}
+
+function testExpGolomb_encodeSigned(test, pass, miss) {
+    var signed = true;
+
+    var result = {
+            "0": ExpGolomb.encode(0, signed)  === "1",
+            "1": ExpGolomb.encode( 1, signed) === "010",
+           "-1": ExpGolomb.encode(-1, signed) === "011",
+            "2": ExpGolomb.encode( 2, signed) === "00100",
+           "-2": ExpGolomb.encode(-2, signed) === "00101",
+            "3": ExpGolomb.encode( 3, signed) === "00110",
+           "-3": ExpGolomb.encode(-3, signed) === "00111",
+            "4": ExpGolomb.encode( 4, signed) === "0001000",
+           "-4": ExpGolomb.encode(-4, signed) === "0001001",
+            "5": ExpGolomb.encode( 5, signed) === "0001010",
+           "-5": ExpGolomb.encode(-5, signed) === "0001011",
+    };
+    if ( /false/.test(JSON.stringify(result)) ) {
+        test.done(miss());
+    } else {
+        test.done(pass());
+    }
+}
+
+function testExpGolomb_decodeSigned(test, pass, miss) {
+    var signed = true;
+
+    var result = {
+            "0": ExpGolomb.decode("1",   signed)     ===  0,
+            "1": ExpGolomb.decode("010", signed)     ===  1,
+           "-1": ExpGolomb.decode("011", signed)     === -1,
+            "2": ExpGolomb.decode("00100", signed)   ===  2,
+           "-2": ExpGolomb.decode("00101", signed)   === -2,
+            "3": ExpGolomb.decode("00110", signed)   ===  3,
+           "-3": ExpGolomb.decode("00111", signed)   === -3,
+            "4": ExpGolomb.decode("0001000", signed) ===  4,
+           "-4": ExpGolomb.decode("0001001", signed) === -4,
+            "5": ExpGolomb.decode("0001010", signed) ===  5,
+           "-5": ExpGolomb.decode("0001011", signed) === -5,
     };
     if ( /false/.test(JSON.stringify(result)) ) {
         test.done(miss());

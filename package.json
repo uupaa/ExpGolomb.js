@@ -1,12 +1,12 @@
 {
   "name": "uupaa.expgolomb.js",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "Exponential-Golomb coding implement.",
-  "url": "https://github.com/uupaa/ExpGolomb",
+  "url": "https://github.com/uupaa/ExpGolomb.js",
   "keywords": ["Exponential-Golomb", "uupaa", "WebModule"],
   "repository": {
     "type": "git",
-    "url": "https://github.com/uupaa/ExpGolomb.git"
+    "url": "https://github.com/uupaa/ExpGolomb.js.git"
   },
   "scripts": {
     "sync": "node ../WebModule/run/sync.js; npm update; node ../WebModule/run/page.js",
@@ -18,11 +18,11 @@
     "test": "npm run min; npm run node; npm run browser",
     "node": "NODE_ENV=production NODE_PATH=lib node test/node/index.js",
     "noded": "NODE_ENV=production NODE_PATH=lib node --debug-brk test/node/index.js",
-    "browser": "open http://localhost:8000/ExpGolomb/test/browser/index.html",
+    "browser": "open http://localhost:8000/ExpGolomb.js/test/browser/index.html",
     "el": "electron test/el",
     "nw": "nw test/nw",
     "add-src": "node ../WebModule/run/add-src.js",
-    "sim": "node ../WebModule/run/sim.js http://localhost:8000/ExpGolomb/test/browser/index.html",
+    "sim": "node ../WebModule/run/sim.js http://localhost:8000/ExpGolomb.js/test/browser/index.html",
     "simx": "node ../WebModule/run/sim.js stop",
     "lint": "eslint lib/*.js",
     "score": "node ../WebModule/run/score.js; open lint/plato/index.html",
